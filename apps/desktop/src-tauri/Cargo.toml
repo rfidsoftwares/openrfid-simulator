@@ -1,0 +1,26 @@
+[package]
+name = "openrfid-desktop"
+version = "1.0.0"
+description = "OpenRFID Simulator Desktop App"
+authors = ["RFIDSoftwares <https://rfidsoftwares.com>"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.70"
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "1.6", features = [ "api-all"] }
+
+[features]
+default = [ "custom-protocol" ]
+custom-protocol = [ "tauri/custom-protocol" ]
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+strip = true

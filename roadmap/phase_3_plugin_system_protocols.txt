@@ -1,0 +1,59 @@
+================================================================================
+OPENRFID SIMULATOR - PHASE 3: PLUGIN SYSTEM & BASELINE PROTOCOL PLUGINS
+================================================================================
+
+Target Scope: Plugin Architecture, REST Plugin, WebSocket Plugin, MQTT Plugin
+Target Release: v0.3.0 Extensible Protocol Engine
+
+1. PLUGIN SYSTEM ARCHITECTURE
+--------------------------------------------------------------------------------
+[x] 1.1 Package: @openrfid/plugin-api
+    - Location: packages/plugin-api
+    - Define Plugin lifecycle interface:
+        * initialize(context: PluginContext): Promise<void>
+        * start(): Promise<void>
+        * stop(): Promise<void>
+        * dispose(): Promise<void>
+        * getMetadata(): PluginMetadata
+    - Define Plugin Manifest schema validation: Name, Version, Author, Description, Dependencies
+    - Plugin Context interface (providing access to EventBus, Logger, Reader Engine, Tag Engine, Storage)
+    - Security sandbox & isolation rules
+
+2. CORE PROTOCOL PACKAGES (MVP PROTOCOLS)
+--------------------------------------------------------------------------------
+[x] 2.1 Package: @openrfid/rest
+    - Location: packages/rest
+    - Fastify HTTP server integration
+    - Auto-generated REST API endpoints:
+        * GET /readers, POST /readers, GET /readers/:id, DELETE /readers/:id
+        * GET /tags, POST /tags, DELETE /tags, POST /tags/generate
+        * GET /events (with pagination & filtering)
+        * GET /health, GET /status
+    - Swagger / route schemas
+
+[x] 2.2 Package: @openrfid/websocket
+    - Location: packages/websocket
+    - Real-time WebSocket server plugin (ws)
+    - Broadcast channels for:
+        * Reader updates (status changes, connection states)
+        * Tag updates (tag detected, tag removed)
+        * Live event feed stream
+        * System notifications and reader logs
+
+[x] 2.3 Package: @openrfid/mqtt
+    - Location: packages/mqtt
+    - MQTT plugin built with mqtt.js
+    - Configurable external broker connection options
+    - Topic publisher for Tag events (e.g. openrfid/readers/{readerId}/tags)
+    - Retained messages support, QoS levels, Client Authentication
+    - Subscribe topic listener for reader remote commands (start/stop inventory)
+
+3. VERIFICATION & PROTOCOL TESTS
+--------------------------------------------------------------------------------
+[x] 3.1 Plugin Lifecycle Tests
+    - Test loading, starting, stopping, and hot-swapping plugins
+    - Validate plugin isolation and error catching
+[x] 3.2 Protocol E2E Testing
+    - Test REST endpoints against Fastify inject testing framework
+    - Test WebSocket real-time message latency and payload structure
+    - Test MQTT publishing and subscription

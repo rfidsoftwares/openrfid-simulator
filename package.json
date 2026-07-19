@@ -1,0 +1,27 @@
+{
+  "name": "openrfid-monorepo",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "build:desktop": "node scripts/build-desktop.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "brand:headers": "node scripts/add-license-headers.js",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "clean": "turbo run clean && rimraf node_modules dist",
+    "cli": "node packages/cli/dist/index.js",
+    "hopeland": "node packages/hopeland-discovery/hopeland-discovery-runner.js"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "turbo": "^1.13.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.0"
+  }
+}

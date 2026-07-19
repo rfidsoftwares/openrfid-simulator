@@ -1,0 +1,33 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@openrfid/core": ["../../packages/core/src/index.ts"],
+      "@openrfid/epc": ["../../packages/epc/src/index.ts"],
+      "@openrfid/gs1": ["../../packages/gs1/src/index.ts"],
+      "@openrfid/utils": ["../../packages/utils/src/index.ts"],
+      "@openrfid/tags": ["../../packages/tags/src/index.ts"],
+      "@openrfid/readers": ["../../packages/readers/src/index.ts"],
+      "@openrfid/simulator": ["../../packages/simulator/src/index.ts"],
+      "@openrfid/plugin-api": ["../../packages/plugin-api/src/index.ts"],
+      "@openrfid/rest": ["../../packages/rest/src/index.ts"],
+      "@openrfid/websocket": ["../../packages/websocket/src/index.ts"],
+      "@openrfid/mqtt": ["../../packages/mqtt/src/index.ts"],
+      "@openrfid/ui": ["../../packages/ui/src/index.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

@@ -1,0 +1,53 @@
+================================================================================
+OPENRFID SIMULATOR - PHASE 2: SIMULATION ENGINE & DATA PERSISTENCE
+================================================================================
+
+Target Scope: Tag Engine, Reader Engine, Antenna Engine, Simulator Core, SQLite Storage
+Target Release: v0.2.0 Core Simulation Baseline
+
+1. DATABASE & PERSISTENCE LAYER
+--------------------------------------------------------------------------------
+[x] 1.1 Storage Driver & Schema
+    - Setup SQLite integration using better-sqlite3 in package or core storage adapter
+    - Design and create database schema tables:
+        * readers (id, name, vendor, model, ip, port, protocol, status, created_at)
+        * antennas (id, reader_id, index, gain, power, frequency, rssi_offset, read_zone)
+        * tags (id, epc, tid, user_memory, access_password, kill_password, protocol)
+        * events (id, timestamp, reader_id, antenna_id, epc, rssi, protocol, payload)
+        * settings (key, value)
+        * plugins (id, name, version, status, config)
+    - Implement migration runner and database seed scripts
+
+2. SIMULATION UTILITY & DOMAIN PACKAGES
+--------------------------------------------------------------------------------
+[x] 2.1 Package: @openrfid/tags
+    - Location: packages/tags
+    - Tag domain model (EPC, TID, User Memory, Passwords, Protocol type)
+    - Tag runtime state (read count, current RSSI, last seen timestamp)
+    - Tag factory & batch generator (random EPC generation, sequential series)
+    - CSV/JSON tag list parser and serializer
+
+[x] 2.2 Package: @openrfid/readers
+    - Location: packages/readers
+    - Virtual Reader domain model & status state machine (OFFLINE, ONLINE, CONNECTING, ERROR)
+    - Virtual Reader configuration (Vendor, Model, IP, Port, Protocol)
+    - Antenna Engine model (1-16 antennas per reader)
+    - Antenna property management (Gain, Power, Frequency, RSSI Offset, Read Zone)
+
+[x] 2.3 Package: @openrfid/simulator
+    - Location: packages/simulator
+    - Core Simulator Engine orchestrator
+    - Inventory cycle clock and timer management
+    - Read probability algorithm (based on antenna power, gain, distance/zone settings)
+    - Event emission pipeline (integrating with @openrfid/core EventBus)
+    - Event types: ReaderConnected, ReaderDisconnected, TagDetected, TagRemoved, TagMoved, ReaderError
+
+3. VERIFICATION & BENCHMARKING
+--------------------------------------------------------------------------------
+[x] 3.1 Unit & Integration Testing
+    - Test database SQLite CRUD operations and transaction speed
+    - Test tag batch generation speed (10,000+ tags)
+    - Test reader lifecycle state transitions
+    - Test simulator inventory loop event emissions under high tag counts
+[x] 3.2 Performance Benchmarking
+    - Benchmark event throughput (targeting > 5,000 tag reads/sec in engine)

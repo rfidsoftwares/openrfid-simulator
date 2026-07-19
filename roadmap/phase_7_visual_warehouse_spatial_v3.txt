@@ -1,0 +1,40 @@
+================================================================================
+OPENRFID SIMULATOR - PHASE 7: VISUAL & SPATIAL SIMULATION (v3.0 ROADMAP)
+================================================================================
+
+Target Scope: Warehouse Designer, Drag-and-Drop Layout, Tag Movement, Heatmaps
+Target Release: v3.0.0 Spatial Simulation Engine
+
+1. SPATIAL WAREHOUSE DESIGNER
+--------------------------------------------------------------------------------
+[ ] 1.1 Floorplan Canvas Editor
+    - React Flow / Canvas integration for visual warehouse layout design
+    - Wall, portal, dock door, conveyor belt, shelf, and rack drawing tools
+    - Floorplan image upload & scaling overlay (PNG/SVG grid alignment)
+
+[ ] 1.2 Interactive Reader & Antenna Placement
+    - Drag-and-drop placement of Readers and Antennas on the floorplan
+    - Visual antenna orientation and beam coverage zone polygon rendering
+    - Read zone radius adjustment and overlap visual indicators
+
+2. TAG MOVEMENT & SPATIAL ENGINE
+--------------------------------------------------------------------------------
+[ ] 2.1 Dynamic Tag Path Motion Simulation
+    - Path drawer (waypoint paths, conveyor animation, forklift motion trajectories)
+    - Animated tag movement along defined paths with variable speeds
+    - Automated movement scenario scripting (e.g. "Item moves from Receiving Dock -> Storage Shelf A -> Packing Station")
+
+[ ] 2.2 Zone Management & Spatial Events
+    - Spatial Zone definition (Receiving, Warehouse, Shipping, Security Portal)
+    - Automatic Zone Entry and Zone Exit event generation based on 2D coordinates
+    - Tag location state tracking in real time
+
+[ ] 2.3 Real-Time Spatial Heatmaps
+    - Canvas-based density heatmap rendering showing read frequency hotspots across floorplan
+    - Historical heatmap playback controls
+
+3. VERIFICATION & SPATIAL TESTING
+--------------------------------------------------------------------------------
+[ ] 3.1 Spatial Collision & Coordinate Math Tests
+    - Unit test 2D point-in-polygon intersection logic for read zone detection
+    - Test smooth frame rendering for 1,000+ animated moving tags on canvas

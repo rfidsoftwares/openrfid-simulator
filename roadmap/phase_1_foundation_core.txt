@@ -1,0 +1,63 @@
+================================================================================
+OPENRFID SIMULATOR - PHASE 1: MONOREPO FOUNDATION & CORE UTILITY LIBRARIES
+================================================================================
+
+Target Scope: Infrastructure, Monorepo Tooling, Core Framework, and Low-Level Utilities
+Target Release: v0.1.0 Architecture Baseline
+
+1. MONOREPO & BUILD INFRASTRUCTURE
+--------------------------------------------------------------------------------
+[x] 1.1 Root Configuration
+    - Initialize pnpm workspace (pnpm-workspace.yaml)
+    - Configure Turborepo (turbo.json) for caching pipeline tasks (build, test, lint, dev)
+    - Set up root package.json with workspace package scopes (@openrfid/*)
+    - Configure root tsconfig.json with strict mode enabled and base compiler settings
+[x] 1.2 Quality & Linting Tooling
+    - Configure ESLint with TypeScript rules
+    - Configure Prettier for consistent code formatting
+    - Set up Husky for git hooks (pre-commit, commit-msg)
+    - Set up Commitlint with Conventional Commits rules
+[x] 1.3 Testing Framework Baseline
+    - Configure Vitest root and package-level workspace settings
+    - Setup coverage reporting and bench utilities
+
+2. CORE UTILITY PACKAGES IMPLEMENTATION
+--------------------------------------------------------------------------------
+[x] 2.1 Package: @openrfid/core
+    - Location: packages/core
+    - Implementation of Event Bus (typed event emitter for all simulator events)
+    - Dependency Injection container pattern
+    - Centralized Configuration Manager (schema validation, defaults)
+    - Base Logger engine (structured JSON and pretty console output)
+    - Storage Interface contracts
+    - Component Lifecycle interfaces (Init, Start, Stop, Destroy)
+
+[x] 2.2 Package: @openrfid/epc
+    - Location: packages/epc
+    - EPC Gen2 memory bank encoder and decoder
+    - Support for hex, binary, and ASCII conversion utilities
+    - Header validation and Bit-level manipulation tools
+    - EPC checksum and filter value utilities
+
+[x] 2.3 Package: @openrfid/gs1
+    - Location: packages/gs1
+    - SGTIN-96 (Serialised Global Trade Item Number) encoder/decoder
+    - GRAI-96 (Global Returnable Asset Identifier) encoder/decoder
+    - GIAI-96 (Global Individual Asset Identifier) encoder/decoder
+    - Company Prefix and Item Reference translation tables
+
+[x] 2.4 Package: @openrfid/utils
+    - Location: packages/utils
+    - Shared random number generators (Gaussian, uniform distributions for simulation)
+    - Data format converters (CSV, JSON, XML parsers)
+    - Network address and port validation utilities
+
+3. VERIFICATION & DOCUMENTATION
+--------------------------------------------------------------------------------
+[x] 3.1 Unit Test Coverage
+    - Write unit tests for @openrfid/core EventBus and Config Manager
+    - Write unit tests for @openrfid/epc encoding/decoding correctness
+    - Write unit tests for @openrfid/gs1 standard bit-mapping
+[x] 3.2 Package Build Verification
+    - Verify tsup/vite build outputs (ESM + CJS) for all Phase 1 packages
+    - Verify pnpm recursive build and turbo execution

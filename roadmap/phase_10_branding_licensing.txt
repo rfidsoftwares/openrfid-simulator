@@ -1,0 +1,45 @@
+================================================================================
+OPENRFID SIMULATOR - PHASE 10: BRANDING, LICENSING & SEO INTEGRATION
+================================================================================
+
+Target Scope: Open Source License, Automated Code File Header Script, Logo Assets & SEO Backlinks
+Target Release: v1.0 Branding & Identity Standard
+
+1. LICENSE & BRANDING SPECIFICATION
+--------------------------------------------------------------------------------
+[x] 1.1 Root LICENSE File Creation
+    - Create root LICENSE file (MIT License)
+    - Copyright holder: RFID Software India Private Limited (https://rfidsoftwares.com)
+    - Website attribution: https://rfidsoftwares.com
+
+[x] 1.2 Automated License Header Script
+    - Location: scripts/add-license-headers.js
+    - Node.js script scanning all packages/, apps/, plugins/, scripts/ for source files (.ts, .tsx, .js, .cjs, .mjs, .css)
+    - Header comment format:
+        /**
+         * OpenRFID Simulator - The Open Source RFID Reader Simulator for Developers.
+         * Copyright (c) 2026 RFID Software India Private Limited - https://rfidsoftwares.com
+         *
+         * Licensed under the MIT License.
+         * For tutorials, hardware drivers, and enterprise RFID solutions, visit https://rfidsoftwares.com
+         */
+    - Add npm script "brand:headers" in root package.json to apply/verify headers across the codebase.
+
+2. LOGO ASSETS & UI BRANDING INTEGRATION
+--------------------------------------------------------------------------------
+[x] 2.1 Logo Asset Storage & Formats
+    - Store high-resolution PNG & vector SVG logo in:
+        * assets/logo.png
+        * assets/logo.svg
+        * packages/ui/src/assets/logo.svg
+
+[x] 2.2 Branding Configuration in Core & UI
+    - Configure default brand metadata in @openrfid/core (Brand Name, Website URL: https://rfidsoftwares.com, Logo URI)
+    - Add Brand constants in @openrfid/core (BRAND_NAME, WEBSITE_URL, HEADER_BANNER).
+
+3. VERIFICATION & SEO AUDIT
+--------------------------------------------------------------------------------
+[x] 3.1 Code Header Verification
+    - Execute node scripts/add-license-headers.js (54 source files stamped with copyright header)
+    - Verify 100% of TypeScript and JavaScript source files contain the rfidsoftwares.com license header
+    - Ensure pnpm build and vitest tests continue passing smoothly with headers attached.

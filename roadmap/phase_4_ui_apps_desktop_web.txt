@@ -1,0 +1,60 @@
+================================================================================
+OPENRFID SIMULATOR - PHASE 4: FRONTEND UI LIBRARY & DESKTOP/WEB APPLICATIONS
+================================================================================
+
+Target Scope: @openrfid/ui Component Library, Desktop App (Tauri), Web App (Vite+React), Core UI Views
+Target Release: v0.4.0 Interactive GUI Application
+
+1. @openrfid/ui COMPONENT LIBRARY
+--------------------------------------------------------------------------------
+[x] 1.1 Shared UI Package Infrastructure
+    - Created packages/ui with React 18, tsup dual CJS/ESM build
+    - Configured branding and copyright headers
+
+[x] 1.2 RFID Visual Components
+    - ReaderStatusBadge (ONLINE, OFFLINE, CONNECTING, ERROR badges)
+    - TagSignalMeter (RSSI bar visualizer & dBm level meter)
+    - AntennaPowerSlider (Tx Power 0.0 to 33.0 dBm slider)
+    - BrandHeader (Cyan stylized "R" vector logo and backlink to https://rfidsoftwares.com)
+
+2. APPLICATIONS & NAVIGATION SHELL
+--------------------------------------------------------------------------------
+[x] 2.1 Web Application (apps/web)
+    - Vite + React 18 + TypeScript SPA
+    - Responsive layout shell with tabbed navigation bar
+
+[x] 2.2 Desktop Application (apps/desktop)
+    - Tauri cross-platform desktop application configuration
+    - Native window shell for Windows (.msi/.exe installer build ready)
+
+3. APPLICATION VIEWS & SCREENS
+--------------------------------------------------------------------------------
+[x] 3.1 Dashboard View
+    - Real-time stat cards (Readers Online/Offline, Active Tags, MQTT Broker Status)
+    - System health metrics and quick action controls (Start All / Stop All Readers)
+
+[x] 3.2 Readers Management View
+    - Reader card grid with status badges, IP/port, vendor info, antenna port count
+    - Add Reader control and individual Start / Stop / Delete actions
+
+[x] 3.3 Tags Management View
+    - Data table displaying EPC Header, TID, Protocol, Read Count, Current RSSI
+    - Batch Tag Generator (Sequential, Random, SGTIN-96 GS1 standards)
+    - CSV Export functionality for generated tag sets
+
+[x] 3.4 Event Monitor View
+    - Real-time streaming data table for TagDetected events
+    - Live RSSI signal strength meter integration
+    - Stream Pause/Resume and Clear controls
+
+[x] 3.5 Protocols & Plugins Screen
+    - Status cards for REST API, WebSocket, MQTT Broker, and custom plugins
+
+4. VERIFICATION & TESTS
+--------------------------------------------------------------------------------
+[x] 4.1 Automated Vitest Tests
+    - 35 / 35 unit tests passed across 14 test files
+    - Tested @openrfid/ui component exports
+
+[x] 4.2 Monorepo Build Verification
+    - 14 / 14 packages and apps built successfully with zero errors

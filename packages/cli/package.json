@@ -1,0 +1,40 @@
+{
+  "name": "@openrfid/cli",
+  "version": "0.1.0",
+  "description": "Headless CLI and terminal management tools for OpenRFID Simulator.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "openrfid": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@openrfid/core": "workspace:*",
+    "@openrfid/hopeland-discovery": "workspace:*",
+    "@openrfid/mqtt": "workspace:*",
+    "@openrfid/plugin-api": "workspace:*",
+    "@openrfid/readers": "workspace:*",
+    "@openrfid/rest": "workspace:*",
+    "@openrfid/simulator": "workspace:*",
+    "@openrfid/tags": "workspace:*",
+    "@openrfid/websocket": "workspace:*",
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.4",
+    "commander": "^12.0.0",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.10",
+    "@types/node": "^20.11.24",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}

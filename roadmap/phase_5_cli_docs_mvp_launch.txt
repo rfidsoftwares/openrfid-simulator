@@ -1,0 +1,59 @@
+================================================================================
+OPENRFID SIMULATOR - PHASE 5: CLI TOOL, DOCUMENTATION & V1.0 MVP LAUNCH
+================================================================================
+
+Target Scope: @openrfid/cli, Documentation Site, Integration Testing & v1.0 Release
+Target Release: v1.0.0 Stable MVP Release
+
+1. CLI DEVELOPMENT
+--------------------------------------------------------------------------------
+[x] 1.1 Package: @openrfid/cli
+    - Location: packages/cli
+    - Command parser using Commander.js / Yargs
+    - Commands implementation:
+        * openrfid init -> Initializes a new simulator workspace / config file
+        * openrfid simulator -> Starts standalone headless simulator server
+        * openrfid create-reader -> Interactively creates a new virtual reader
+        * openrfid create-tag -> Interactively generates virtual tags
+        * openrfid mqtt -> Launches CLI MQTT monitoring session
+        * openrfid export -> Exports reader/tag/event configurations
+        * openrfid plugins -> Lists, enables, or installs plugins
+    - Pretty terminal output with chalk, ora spinners, and cli-table3
+
+2. DOCUMENTATION & WEBSITE
+--------------------------------------------------------------------------------
+[x] 2.1 Application: apps/docs
+    - Location: apps/docs
+    - Setup documentation framework (Nextra, Starlight, or Docusaurus)
+    - Comprehensive Documentation Guides:
+        * Quickstart Guide (Desktop App, CLI, Node SDK usage)
+        * Architecture & Core Concepts (Readers, Antennas, Tags, Events)
+        * npm Package API References (@openrfid/core, @openrfid/epc, @openrfid/simulator, etc.)
+        * Protocol Guides (REST API spec, WebSocket events, MQTT topic structures)
+        * Plugin Development Guide (Building custom protocols & vendor drivers)
+        * Example Tutorials & Code Snippets
+
+3. END-TO-END TESTING & QUALITY ASSURANCE
+--------------------------------------------------------------------------------
+[x] 3.1 E2E & System Integration Tests
+    - Playwright desktop app UI automation tests
+    - Full workflow tests: Create Reader -> Generate Tags -> Run Simulation -> Verify MQTT & REST events -> Export Data
+    - Performance & Stability testing: 24-hour long-running simulation load test
+
+4. CI/CD & RELEASE PIPELINE (V1.0.0 RELEASE)
+--------------------------------------------------------------------------------
+[x] 4.1 GitHub Actions & Publishing Workflows
+    - CI workflow: Lint, Typecheck, Unit Test, Build across OS matrices (Windows, Ubuntu, macOS)
+    - Release workflow using Changesets / Release Please
+    - Automated npm package publishing workflow for @openrfid/* scope
+    - Automated desktop installer build & release asset creation (GitHub Releases)
+[x] 4.2 Official v1.0 MVP Audit & Sign-off
+    - Verify all MVP requirements from requirement.md:
+        [x] Desktop application
+        [x] Virtual RFID Reader & Antenna
+        [x] Virtual Tags
+        [x] SQLite storage
+        [x] REST API & WebSocket & MQTT
+        [x] Dashboard & Management UI
+        [x] Plugin system
+        [x] EPC generator & CSV import/export

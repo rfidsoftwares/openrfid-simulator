@@ -1,0 +1,36 @@
+================================================================================
+OPENRFID SIMULATOR - PHASE 8: RF PHYSICS ENGINE & ENVIRONMENTAL MODELING (v4.0 ROADMAP)
+================================================================================
+
+Target Scope: RF Propagation Model, Tag Collisions, RSSI Modeling, Beam Simulation
+Target Release: v4.0.0 High-Fidelity Physics Engine
+
+1. ADVANCED RF PHYSICS ENGINE
+--------------------------------------------------------------------------------
+[ ] 1.1 RF Propagation & Path Loss Model
+    - Free Space Path Loss (FSPL) mathematical calculations (Friis transmission equation)
+    - Environmental attenuation factors (wood, metal, concrete, liquid interference modeling)
+    - Multipath interference & signal reflection approximations
+
+[ ] 1.2 Antenna Beam Pattern Simulation
+    - 3D Radiation Pattern modeling (Linear, Circular Polarization)
+    - Main lobe gain, side lobes, and back lobe attenuation modeling
+    - Dynamically calculated RSSI based on distance, angle, polarization mismatch, and Tx power
+
+[ ] 1.3 Tag Collision & Anti-Collision Protocol Simulation
+    - EPC Gen2 Slotted Random Aloha protocol simulation
+    - Q-algorithm dynamic slot allocation simulation
+    - Collided read attempt detection and re-transmission delay modeling
+
+[ ] 1.4 Stochastic Read Probability Engine
+    - Multi-variable probability engine incorporating:
+        * Signal-to-Noise Ratio (SNR)
+        * Tag velocity / Doppler effect
+        * Tag orientation relative to antenna polarization
+        * Simultaneous tag density in beam field
+
+2. VERIFICATION & ACCURACY BENCHMARKS
+--------------------------------------------------------------------------------
+[ ] 2.1 Physics Model Validation
+    - Validate FSPL mathematical output against empirical RF propagation values
+    - Test Aloha collision simulation accuracy under high tag density fields (500+ tags in single field)
