@@ -25,6 +25,11 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
+      - name: Configure Git User
+        run: |
+          git config --global user.name "rfidsoftwares"
+          git config --global user.email "info@rfidsoftwares.com"
+
       - name: Install Dependencies
         run: pnpm install
 
@@ -35,6 +40,7 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm changeset publish
+          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
