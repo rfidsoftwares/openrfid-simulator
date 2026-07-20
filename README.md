@@ -13,7 +13,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/rfidsoftwares/openrfid-simulator/pulls)
 [![Powered By](https://img.shields.io/badge/Sponsored%20By-RFIDSoftwares.com-0066cc.svg)](https://rfidsoftwares.com)
 
-**[Website](https://rfidsoftwares.com)** • **[Documentation](https://github.com/rfidsoftwares/openrfid-simulator/tree/main/apps/docs)** • **[Research Paper Draft](./research-paper/PAPER_DRAFT.md)** • **[User Guide](./USER_GUIDE.md)** • **[Desktop Guide](./DESKTOP_GUIDE.md)**
+**[Website](https://rfidsoftwares.com)** • **[📥 Downloads](./DOWNLOADS.md)** • **[Documentation](https://github.com/rfidsoftwares/openrfid-simulator/tree/main/apps/docs)** • **[Research Paper Draft](./research-paper/PAPER_DRAFT.md)** • **[User Guide](./USER_GUIDE.md)** • **[Desktop Guide](./DESKTOP_GUIDE.md)**
 
 </div>
 
