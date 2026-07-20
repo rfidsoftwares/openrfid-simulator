@@ -1,10 +1,10 @@
 /**
  * OpenRFID Simulator - Desktop Build Script
  * ========================================================
- * 1. Resolves system paths for Rust/Cargo & WiX Toolset on Windows if not set globally.
- * 2. Compiles the background Node.js runner using `pkg` into a standalone binary.
- * 3. Places the compiled runner into `src-tauri/binaries/` named as a Tauri sidecar.
- * 4. Runs `tauri build` to package the UI and sidecar runner into a single setup installer.
+ * 1. Resolves system paths for Rust/Cargo & WiX Toolset on Windows.
+ * 2. Compiles the background Node.js runner using `pkg` into standalone sidecar binaries.
+ * 3. Supports x64 (64-bit) and x86 (32-bit) target architectures.
+ * 4. Runs `tauri build` to package UI and sidecar runner into MSI/EXE setup installers.
  */
 
 const fs = require('fs');
@@ -13,6 +13,10 @@ const { execSync } = require('child_process');
 
 const rootDir = path.resolve(__dirname, '..');
 const binariesDir = path.join(rootDir, 'apps', 'desktop', 'src-tauri', 'binaries');
+
+// Parse --arch flag (defaults to process.arch or x64)
+const args = process.argv.slice(2);
+const archArg = args.find((arg) => arg.startsWith('--arch='))?.split('=')[1] || 'x64';
 
 // Ensure binaries directory exists
 if (!fs.existsSync(binariesDir)) {
@@ -25,8 +29,13 @@ let pkgTarget = '';
 let extension = '';
 
 if (process.platform === 'win32') {
-  targetTriple = 'x86_64-pc-windows-msvc';
-  pkgTarget = 'node18-win-x64';
+  if (archArg === 'x86' || archArg === 'ia32' || archArg === '32') {
+    targetTriple = 'i686-pc-windows-msvc';
+    pkgTarget = 'node18-win-x86';
+  } else {
+    targetTriple = 'x86_64-pc-windows-msvc';
+    pkgTarget = 'node18-win-x64';
+  }
   extension = '.exe';
   
   // Set up Cargo and WiX paths if they are not in the environment's PATH
@@ -43,7 +52,7 @@ if (process.platform === 'win32') {
     console.log(`[Build] Prepended local environment paths: ${envPaths.join(';')}`);
   }
   
-  // Set lower build concurrency on Windows to prevent anti-virus/search indexers from locking intermediate files (.rcgu.o)
+  // Set lower build concurrency on Windows to prevent file locks
   process.env.CARGO_BUILD_JOBS = '1';
   console.log(`[Build] Set CARGO_BUILD_JOBS = 1`);
 } else if (process.platform === 'darwin') {
@@ -61,7 +70,7 @@ const sidecarName = `hopeland-runner-${targetTriple}${extension}`;
 const sidecarPath = path.join(binariesDir, sidecarName);
 const runnerScript = path.join(rootDir, 'packages', 'hopeland-discovery', 'hopeland-discovery-runner.js');
 
-console.log(`[Build] Target Triple: ${targetTriple}`);
+console.log(`[Build] Target Architecture: ${archArg} (${targetTriple})`);
 console.log(`[Build] Packaging runner script into standalone binary sidecar...`);
 
 // 2. Run pkg to package Node.js runner
@@ -75,12 +84,12 @@ try {
   process.exit(1);
 }
 
-// 3. Build Tauri desktop application
+// 3. Build Tauri desktop application for target triple
 try {
-  const tauriCmd = 'pnpm --filter @openrfid/desktop tauri build';
+  const tauriCmd = `pnpm --filter @openrfid/desktop tauri build --target ${targetTriple}`;
   console.log(`[Build] Running: ${tauriCmd}`);
   execSync(tauriCmd, { cwd: rootDir, stdio: 'inherit' });
-  console.log('[Build] Standalone desktop application installer built successfully!');
+  console.log(`[Build] Standalone desktop installer (${archArg} / ${targetTriple}) built successfully!`);
 } catch (error) {
   console.error('[Build] Error building the Tauri desktop application:', error.message);
   process.exit(1);
