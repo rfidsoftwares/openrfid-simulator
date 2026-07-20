@@ -1,6 +1,6 @@
 {
   "name": "@openrfid/epc",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "EPC Gen2 memory bank parsing, encoding, hex/binary/ASCII tools and CRC calculation.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

@@ -3,7 +3,7 @@
 **Authors**: OpenRFID Simulator Engineering Team  
 **Organization**: RFID Software India Private Limited — [https://rfidsoftwares.com](https://rfidsoftwares.com)  
 **License**: MIT License  
-**Repository**: [https://github.com/openrfid/openrfid-simulator](https://github.com/openrfid/openrfid-simulator)
+**Repository**: [https://github.com/rfidsoftwares/openrfid-simulator](https://github.com/rfidsoftwares/openrfid-simulator)
 
 ---
 

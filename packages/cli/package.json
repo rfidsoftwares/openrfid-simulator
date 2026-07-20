@@ -1,6 +1,6 @@
 {
   "name": "@openrfid/cli",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Headless CLI and terminal management tools for OpenRFID Simulator.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -8,7 +8,8 @@
     "openrfid": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup",

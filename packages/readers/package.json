@@ -1,6 +1,6 @@
 {
   "name": "@openrfid/readers",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Virtual Reader and Antenna Engine domain models with state machine support for OpenRFID Simulator.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

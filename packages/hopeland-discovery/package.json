@@ -1,6 +1,6 @@
 {
   "name": "@openrfid/hopeland-discovery",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Hopeland/Identium UDP multicast device discovery announcer for OpenRFID Simulator. Makes the simulator appear as a real Hopeland RFID reader on the local network.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

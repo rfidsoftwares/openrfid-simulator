@@ -1,6 +1,6 @@
 {
   "name": "@openrfid/gs1",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "GS1 Tag Data Standard encoding and decoding for SGTIN-96, GRAI-96, GIAI-96.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

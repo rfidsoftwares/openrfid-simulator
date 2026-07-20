@@ -1,6 +1,6 @@
 {
   "name": "@openrfid/plugin-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Extensible plugin interface, manifest validator, context provider, and lifecycle manager for OpenRFID Simulator.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

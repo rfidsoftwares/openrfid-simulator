@@ -1,6 +1,6 @@
 {
   "name": "@openrfid/core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Core architecture, EventBus, DI Container, Config, Logger, and Storage contracts for OpenRFID Simulator.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
