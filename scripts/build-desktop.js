@@ -1,10 +1,9 @@
 /**
  * OpenRFID Simulator - Desktop Build Script
  * ========================================================
- * 1. Resolves system paths for Rust/Cargo & WiX Toolset on Windows.
- * 2. Compiles the background Node.js runner using `pkg` into standalone sidecar binaries.
- * 3. Supports x64 (64-bit) and x86 (32-bit) target architectures.
- * 4. Runs `tauri build` to package UI and sidecar runner into MSI/EXE setup installers.
+ * 1. Resolves system paths for Rust/Cargo, WiX Toolset, and Git Unix utilities on Windows.
+ * 2. Compiles the background Node.js runner using `pkg` into a standalone binary sidecar.
+ * 3. Runs `tauri build` to package the UI and sidecar runner into Windows setup installers.
  */
 
 const fs = require('fs');
@@ -13,10 +12,6 @@ const { execSync } = require('child_process');
 
 const rootDir = path.resolve(__dirname, '..');
 const binariesDir = path.join(rootDir, 'apps', 'desktop', 'src-tauri', 'binaries');
-
-// Parse --arch flag (defaults to process.arch or x64)
-const args = process.argv.slice(2);
-const archArg = args.find((arg) => arg.startsWith('--arch='))?.split('=')[1] || 'x64';
 
 // Ensure binaries directory exists
 if (!fs.existsSync(binariesDir)) {
@@ -29,23 +24,20 @@ let pkgTarget = '';
 let extension = '';
 
 if (process.platform === 'win32') {
-  if (archArg === 'x86' || archArg === 'ia32' || archArg === '32') {
-    targetTriple = 'i686-pc-windows-msvc';
-    pkgTarget = 'node18-win-x86';
-  } else {
-    targetTriple = 'x86_64-pc-windows-msvc';
-    pkgTarget = 'node18-win-x64';
-  }
+  targetTriple = 'x86_64-pc-windows-msvc';
+  pkgTarget = 'node18-win-x64';
   extension = '.exe';
   
-  // Set up Cargo and WiX paths if they are not in the environment's PATH
+  // Set up Cargo, WiX, and Git Unix tools paths
   const homeDir = process.env.USERPROFILE || 'C:\\Users\\Akash';
   const cargoBin = path.join(homeDir, '.cargo', 'bin');
   const wixBin = 'C:\\Program Files (x86)\\WiX Toolset v3.14\\bin';
+  const gitUsrBin = 'C:\\Program Files\\Git\\usr\\bin';
   
   let envPaths = [];
   if (fs.existsSync(cargoBin)) envPaths.push(cargoBin);
   if (fs.existsSync(wixBin)) envPaths.push(wixBin);
+  if (fs.existsSync(gitUsrBin)) envPaths.push(gitUsrBin);
   
   if (envPaths.length > 0) {
     process.env.PATH = `${envPaths.join(';')};${process.env.PATH}`;
@@ -70,8 +62,8 @@ const sidecarName = `hopeland-runner-${targetTriple}${extension}`;
 const sidecarPath = path.join(binariesDir, sidecarName);
 const runnerScript = path.join(rootDir, 'packages', 'hopeland-discovery', 'hopeland-discovery-runner.js');
 
-console.log(`[Build] Target Architecture: ${archArg} (${targetTriple})`);
-console.log(`[Build] Packaging runner script into standalone binary sidecar...`);
+console.log(`[Build] Target Triple: ${targetTriple}`);
+console.log(`[Build] Packaging runner script into standalone binary sidecar (${pkgTarget})...`);
 
 // 2. Run pkg to package Node.js runner
 try {
@@ -84,12 +76,12 @@ try {
   process.exit(1);
 }
 
-// 3. Build Tauri desktop application for target triple
+// 3. Build Tauri desktop application
 try {
-  const tauriCmd = `pnpm --filter @openrfid/desktop tauri build --target ${targetTriple}`;
+  const tauriCmd = 'pnpm --filter @openrfid/desktop tauri build';
   console.log(`[Build] Running: ${tauriCmd}`);
   execSync(tauriCmd, { cwd: rootDir, stdio: 'inherit' });
-  console.log(`[Build] Standalone desktop installer (${archArg} / ${targetTriple}) built successfully!`);
+  console.log('[Build] Standalone desktop application installer built successfully!');
 } catch (error) {
   console.error('[Build] Error building the Tauri desktop application:', error.message);
   process.exit(1);
